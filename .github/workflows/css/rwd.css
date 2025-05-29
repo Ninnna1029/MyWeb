@@ -1,0 +1,583 @@
+@font-face {
+	font-family: 'MyFont';
+	src: url('fonts/MyFont.woff2') format('woff2'),
+		 url('fonts/MyFont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+  }  
+
+#starfield {
+	position: fixed;
+	left: 0; top: 0;
+	width: 100vw; height: 100vh;
+	pointer-events: none;
+	z-index: 0;
+	display: block;
+}  
+
+#intro-text::after {
+	content: '|';
+	animation: blink 1s steps(2, start) infinite;
+	margin-left: 3px;
+	color: #fff;
+}
+  
+@keyframes blink {
+	to {
+	  visibility: hidden;
+	}
+}
+  
+.bgm-player {
+	min-width: 420px;
+}
+  
+.bgm-player button {
+	padding: 4px 12px;
+	font-size: 1.2rem;
+	flex-shrink: 0;
+}
+  
+.bgm-controls input[type=range] {
+	cursor: pointer;
+	height: 6px;
+	border-radius: 4px;
+}
+  
+.bgm-title {
+	flex-shrink: 0;
+	user-select: none;
+}  
+
+body {
+	background-image: url(../images/star.jpg);
+	background-repeat: no-repeat;
+	background-position: center bottom;
+	color: #fff;
+	background-size: cover;
+	background-attachment: fixed;
+	font-family: arial, helvetica, sans-serif, 微軟正黑體;
+	user-select: none;           /* 標準寫法 */
+    -webkit-user-select: none;   /* Safari/Chrome */
+    -ms-user-select: none;
+  }
+  
+  .box {
+	background-color: rgba(34,49,72,0.6);
+	padding: 20px;
+  }
+  
+  .top {
+	margin: 15px auto;
+  }
+  
+  .top nav {
+	background-color: rgba(34,49,72,0.6);
+	border-color: rgba(34,49,72,0.6);
+  }
+  
+  /* Navbar brand */
+  .navbar-dark .navbar-brand {
+	color: #fff;
+	transition: color 0.3s;
+  }
+  .navbar-dark .navbar-brand:focus,
+  .navbar-dark .navbar-brand:hover {
+	color: #9daeba;
+  }
+  
+  /* Nav links default */
+  .navbar-dark .navbar-nav .nav-link {
+	color: #fff;
+	transition: color 0.3s;
+  }
+  
+  /* Nav links hover */
+  .navbar-dark .navbar-nav .nav-link:hover {
+	color: #9daeba;
+	transition: color 0.3s;
+  }
+  
+  /* Active nav links */
+  .navbar-dark .navbar-nav .nav-link.active,
+  .navbar-dark .navbar-nav .show > .nav-link {
+	color: #abc7ee ;
+	font-weight: 600;
+  }
+  
+  /* Dropdown toggle active */
+  .navbar-dark .dropdown-toggle.active {
+	color: #abc7ee ;
+	font-weight: 600;
+  }
+  
+  /* Dropdown menu items */
+  .navbar-dark .dropdown-menu {
+	background-color: rgba(34,49,72,0.9);
+  }
+  
+  /* Dropdown items default */
+  .navbar-dark .dropdown-item {
+	color: #fff;
+	transition: color 0.3s;
+  }
+  
+  /* Dropdown items hover */
+  .navbar-dark .dropdown-item:hover {
+	color: #9daeba;
+	background-color: transparent;
+  }
+  
+  /* Dropdown items active */
+  .navbar-dark .dropdown-item.active {
+	color: #abc7ee ;
+	background-color: rgba(34,49,72,0.8);
+	font-weight: 600;
+  }
+  
+  /* Button hover */
+  button:hover {
+	background-color: #8ba1c1;
+	color: #fff;
+	transition: background-color 0.3s, color 0.3s;
+  }
+  
+/***************************************************************/
+
+.box {
+  border-radius: 18px !important;
+}
+
+.constellation-box {
+  max-width: 700px;
+  margin: 0 auto;
+  background: rgba(34,49,72,0.7);
+  border-radius: 18px !important;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  padding: 32px 18px 36px 18px;
+  position: relative;
+}
+
+.star-popup {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(20,25,40,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999;
+  animation: fadeIn 0.3s;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.popup-content {
+  background: rgba(34,49,72,0.95);
+  border-radius: 12px;
+  padding: 32px 28px 24px 28px;
+  color: #fff;
+  min-width: 320px;
+  max-width: 420px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.28);
+  position: relative;
+  text-align: center;
+  font-size: 1.08rem;
+}
+.popup-close {
+  position: absolute;
+  right: 18px;
+  top: 14px;
+  color: #abc7ee;
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.popup-close:hover {
+  color: #fff;
+}
+
+.meteor-box {
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  padding: 32px 18px 36px 18px;
+  position: relative;
+}
+
+
+/***************************************************************/
+
+/* 畫廊區塊 */
+.gallery-wrapper {
+  padding: 20px 0;
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-auto-rows: minmax(200px, auto);
+  grid-gap: 16px;
+  margin: 0 auto;
+}
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background: rgba(34,49,72,0.7);
+  transition: transform 0.3s, box-shadow 0.3s, z-index 0s 0.3s;
+  z-index: 1;
+  cursor: pointer;
+}
+.gallery-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+  z-index: 2;
+  transition: transform 0.3s, box-shadow 0.3s, z-index 0s;
+}
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+/* 根據類型微調大小 */
+/* Specific placements for each item based on the target layout */
+        /* Item 1: Top-left (8x10) */
+        .gallery-item:nth-child(1) {
+            grid-column: 1 / 2; /* Start at column line 1, end before column line 2 */
+            grid-row: 1 / 2;    /* Start at row line 1, end before row line 2 */
+            aspect-ratio: 12 / 16; /* Maintain 8x10 proportion */
+        }
+
+        /* Item 2: Top-middle (12x16) */
+        .gallery-item:nth-child(2) {
+            grid-column: 2 / 3;
+            grid-row: 1 / 2;
+            aspect-ratio: 12 / 16; /* Maintain 12x16 proportion */
+        }
+
+        /* Item 3: Top-right (20x28) - Large */
+        .gallery-item:nth-child(3) {
+            grid-column: 3 / 5; /* Span from column line 3 to line 5 (i.e., columns 3 & 4) */
+            grid-row: 1 / 3;    /* Span from row line 1 to line 3 (i.e., rows 1 & 2) */
+            aspect-ratio: 20 / 28; /* Maintain 20x28 proportion */
+        }
+
+        /* Item 4: Bottom-left (20x28) - Large */
+        .gallery-item:nth-child(4) {
+            grid-column: 1 / 3; /* Span from column line 1 to line 3 (i.e., columns 1 & 2) */
+            grid-row: 2 / 4;    /* Span from row line 2 to line 4 (i.e., rows 2 & 3) */
+            aspect-ratio: 20 / 28; /* Maintain 20x28 proportion */
+        }
+
+        /* Item 5: Bottom-middle (12x16) */
+        .gallery-item:nth-child(5) {
+            grid-column: 3 / 4;
+            grid-row: 3 / 4;    /* Occupy row 3 */
+            aspect-ratio: 12 / 16; /* Maintain 12x16 proportion */
+        }
+
+        /* Item 6: Bottom-right (8x10) */
+        .gallery-item:nth-child(6) {
+            grid-column: 4 / 5;
+            grid-row: 3 / 4;    /* Occupy row 3 */
+            aspect-ratio: 12 / 16; /* Maintain 8x10 proportion */
+        }
+
+		 @media (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr); /* 變為 2 欄 */
+                grid-template-rows: auto; /* 列高度自動調整 */
+            }
+
+            /* 重設桌面版的特定位置，並為平板重新定義 */
+            /* HTML 中項目的順序對於這種簡單的重新流動很重要 */
+
+            .gallery-item:nth-child(1) { /* 8x10 - 變為左上 */
+                grid-column: 1 / 2;
+                grid-row: auto; /* 自動流入下一個可用列 */
+                /* aspect-ratio 會被繼承 */
+            }
+            .gallery-item:nth-child(2) { /* 12x16 - 變為右上 */
+                grid-column: 2 / 3;
+                grid-row: auto;
+            }
+            .gallery-item:nth-child(3) { /* 20x28 右上 - 現在橫跨整行寬度 */
+                grid-column: 1 / 3; /* 橫跨 2 欄 */
+                grid-row: auto;
+            }
+            .gallery-item:nth-child(4) { /* 20x28 左下 - 現在橫跨整行寬度 */
+                grid-column: 1 / 3; /* 橫跨 2 欄 */
+                grid-row: auto;
+            }
+            .gallery-item:nth-child(5) { /* 12x16 中下 - 變為左下 */
+                grid-column: 1 / 2;
+                grid-row: auto;
+            }
+            .gallery-item:nth-child(6) { /* 8x10 右下 - 變為右下 */
+                grid-column: 2 / 3;
+                grid-row: auto;
+            }
+        }
+
+        /* --- 小螢幕 (例如：手機 - 1 欄) --- */
+        /* 斷點範例：767px 或更小 */
+        @media (max-width: 767px) {
+            .gallery-grid {
+                grid-template-columns: 1fr; /* 單欄 */
+                grid-template-rows: auto; /* 列高度自動調整 */
+            }
+
+            /* 所有項目將在單欄中堆疊。
+               我們只需要確保它們佔據全部寬度並自動排列列。
+               aspect-ratio 仍然適用。 */
+            .gallery-item:nth-child(n) { /* 選取所有 gallery-item */
+                grid-column: 1 / -1; /* 橫跨整個可用單欄 */
+                grid-row: auto; /* 自動流入新的列 */
+                /*
+                您可能希望在此處調整 aspect-ratio 以在移動設備上獲得更統一的外觀，
+                或者如果某些項目變得太高。例如：
+                aspect-ratio: 1 / 1; 或 aspect-ratio: 4 / 3;
+                */
+            }
+        }
+
+/* 全螢幕畫廊彈窗 */
+.gallery-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(34,49,72,0.95);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
+.gallery-modal img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+.gallery-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: #fff;
+  font-size: 40px;
+  cursor: pointer;
+}
+.gallery-prev, .gallery-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(157,174,186,0.3);
+  border: none;
+  color: #fff;
+  font-size: 30px;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.gallery-prev {
+  left: 20px;
+}
+.gallery-next {
+  right: 20px;
+}
+.gallery-prev:hover, .gallery-next:hover {
+  background: rgba(171,199,238,0.7);
+}
+
+
+
+.videobox {
+	width: 80%;
+	aspect-ratio: 16 / 9;
+	margin: 0 auto;    
+  }
+  
+.videobox iframe {
+	width: 100%;
+	height: 100%;
+	display: block;
+	border: none;
+}
+  
+.music-player {
+	background: rgba(34,49,72,0.85);
+	color: #fff;
+	border-radius: 0;
+	box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+	padding: 0;
+  }
+  
+  /* 專輯圖片：無圓角、正方形、響應式，contain 不裁切 */
+  .album-img {
+	width: 100%;
+	max-width: 320px;
+	aspect-ratio: 1 / 1;
+	object-fit: contain;
+	border-radius: 0;
+	background: #222;
+	display: block;
+  }  
+  
+  /* 歌詞區塊 */
+  .lyric-box {
+	background: rgba(34,49,72,0.7);
+	border-radius: 8px;
+	min-height: 140px;
+	max-height: 260px;
+	overflow-y: auto;
+	font-size: 1rem;
+	line-height: 1.7;
+	padding: 10px;
+  }
+  
+  .song-title {
+	font-weight: bold;
+	color: #fff;
+  }
+  
+  .player-controls {
+	background: transparent;
+	gap: 12px;
+  }
+  
+  input[type="range"][data-progress] {
+	accent-color: #abc7ee;
+  }  
+  
+  /* 歌詞容器 */
+  .lyric-line-container {
+	margin-bottom: 8px;
+  }
+  
+  /* 原文 */
+  .lyric-line.original {
+	color: #fff;
+	font-size: 1rem;
+	opacity: 0.8;
+	margin: 0;
+  }
+  
+  /* 翻譯 */
+  .lyric-line.translation {
+	color: #abc7ee;
+	font-size: 0.85rem;
+	opacity: 0.7;
+	margin: 0;
+	padding-left: 10px;
+  }
+  
+  /* 活動行高亮 */
+  .lyric-line-container.active .lyric-line.original {
+	color: #abc7ee;
+	font-weight: bold;
+	opacity: 1;
+	font-size: 1.1rem;
+  }
+  .lyric-line-container.active .lyric-line.translation {
+	opacity: 1;
+	font-weight: 600;
+  }
+  
+  /* RWD: 手機/平板時圖片更小，歌詞和控制列上下排列，播放列橫向 */
+  @media (max-width: 991.98px) {
+	.album-img {
+	  max-width: 180px;
+	  margin: 30px auto 6px auto;
+	  display: block;
+	}
+	.lyric-section .song-title {
+	  margin-top: 0.2rem;
+	  margin-bottom: 1rem;
+	}
+	.lyric-section br {
+	  display: none;
+	}
+  }
+  
+/***************************************************************/
+
+.my_photo {
+	width: 160px;
+}
+
+.info p {
+	font-size: 15px;
+	text-align: center;
+}
+
+.info p.name_id {
+	font-size: 20px;
+	margin-top: 15px;
+}
+
+.contact {
+	text-align: center;
+}
+
+.contact ul {
+	padding-left: 0;
+	list-style: none;
+}
+
+.contact ul li {
+	display: inline-block;
+	padding: 0px 20px;
+	font-size: 30px;
+}
+
+.contact ul li a{
+	color: #FFFFFF;
+}
+
+.contact ul li a:hover{
+	color: #9daeba;
+}
+
+
+/***************************************************************/
+
+#galaxy-cursor {
+	position: fixed;
+	left: 0; top: 0;
+	width: 100vw; height: 100vh;
+	pointer-events: none;
+	z-index: 99999;
+  }
+  
+  .galaxy-dot {
+	position: absolute;
+	border-radius: 50%;
+	opacity: 0.75;
+	pointer-events: none;
+	animation: galaxy-dot-float 0.5s forwards;
+  }
+  
+  @keyframes galaxy-dot-float {
+	0%   { transform: scale(1) translateY(0); opacity: 1; }
+	80%  { opacity: 0.8; }
+	100% { transform: scale(0.6) translateY(-40px); opacity: 0; }
+  }
+  
+  .galaxy-tail {
+	position: absolute;
+	pointer-events: none;
+	border-radius: 999px;
+	background: linear-gradient(90deg, rgba(180,120,255,0.35) 0%, rgba(180,120,255,0.12) 100%);
+	filter: blur(2px);
+	z-index: 99998;
+	animation: galaxy-tail-fade 0.4s linear forwards; /* 尾巴淡出時間縮短 */
+  }
+  
+  @keyframes galaxy-tail-fade {
+	0%   { opacity: 0.8; }
+	100% { opacity: 0; }
+  }
+  
+  
+  
+  
