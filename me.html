@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/rwd.css">
+    <title>✦ 𝐒𝐞𝐫𝐞𝐧𝐝𝐢𝐩𝐢𝐭𝐲 ✦</title>
+    <!--fontawesome-->
+		<script src="https://kit.fontawesome.com/97bffa9571.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+  <canvas id="starfield"></canvas>
+    <div class="top">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+          <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+              <img src="images/logo.png" alt="Logo" style="height:32px;width:auto;margin-right:10px;">
+              𝐒𝐞𝐫𝐞𝐧𝐝𝐢𝐩𝐢𝐭𝐲
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="me.html">About Me</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="music.html">Music</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Artist
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="group.html">Group</a></li>
+                    <li><a class="dropdown-item" href="solo.html">Solo</a></li>
+                  </ul>
+                </li>
+              </ul>
+              <div class="bgm-player d-flex align-items-center ms-lg-3">
+                <button class="btn btn-outline-light btn-sm" id="bgm-play-btn" type="button" aria-label="Play background music" style="margin-right: 12px;">
+                  <span id="bgm-play-icon" class="bi bi-play-fill"></span>
+                </button>
+              
+                <div class="bgm-controls d-flex flex-column" style="width: 200px; margin-right: 12px;">
+                  <div class="d-flex align-items-center mb-2">
+                    <label for="bgm-progress" class="me-2 text-white" style="min-width: 50px; font-size: 0.85rem;">Progress</label>
+                    <input type="range" id="bgm-progress" min="0" max="100" value="0" step="0.1" style="flex-grow: 1; accent-color: #abc7ee;">
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <label for="bgm-volume" class="me-2 text-white" style="min-width: 50px; font-size: 0.85rem;">Volume</label>
+                    <input type="range" id="bgm-volume" min="0" max="100" value="60" step="1" style="flex-grow: 1; accent-color: #abc7ee;">
+                  </div>
+                </div>
+              
+                <div class="bgm-title text-white" style="min-width: 150px; font-size: 0.95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                  Shiny Star
+                </div>
+              
+                <audio id="bgm-audio" src="audio/bgm.mp3" preload="auto" style="display:none;"></audio>
+              </div>
+            </div>
+          </div>
+        </nav>
+    </div>       
+
+    <div class="container box">
+        <div class="row">
+            <!--圖片-->
+            <div class="col-sm-12 col-md-4 text-center">
+                <img src="images/me.jpg" class="my_photo rounded-circle" />
+            </div>
+
+            <!--資訊-->
+            <div class="col-sm-12 col-md-8 info">
+                <p class="name_id">Nina</p>
+                <p>ᴅᴏɴ’ᴛ ᴡᴏʀʀʏ, ʙᴇ ʜᴀᴘᴘʏ (୨୧ •͈ᴗ•͈)</p>
+                <nav class="contact">
+                    <ul>
+                        <li><a href="https://www.instagram.com/nina___1029/"><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="mailto:ninatsai931029@gmail.com"><i class="fas fa-envelope"></i></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container box">
+      <div class="row">
+        <div class="col-md-8 offset-md-1">
+          <div id="intro" style="font-size: 1.5rem; margin: 40px 0; color: #fff; font-family: 'Georgia', serif; text-align: left;">
+            <p>✦ MBTI : INFJ</p>
+            <p>✦ Constellation : Scorpio</p>
+            <p>✦ Language : Chinese</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="container box">
+    <h2 class="text-center mb-4" style="font-size: 2.5rem; margin: 40px 0; color: #fff; font-family: 'Georgia', serif;">My Gallery</h2>
+    <div class="gallery-wrapper">
+        <div class="gallery-grid">
+            <div class="gallery-item" data-type="portrait"> <!-- Corresponds to 8x10 in example image -->
+                <img src="images/sky.png" alt="Image 1 (8x10)">
+            </div>
+            <div class="gallery-item" data-type="portrait"> <!-- Corresponds to 12x16 in example image -->
+                <img src="images/bss.png" alt="Image 2 (12x16)">
+            </div>
+            <div class="gallery-item" data-type="portrait"> <!-- Corresponds to 20x28 (top-right) in example image -->
+                <img src="images/xmas.png" alt="Image 3 (20x28)">
+            </div>
+            <div class="gallery-item" data-type="portrait"> <!-- Corresponds to 20x28 (bottom-left) in example image -->
+                <img src="images/beach.png" alt="Image 4 (20x28)">
+            </div>
+            <div class="gallery-item" data-type="portrait"> <!-- Corresponds to 12x16 (bottom-middle) in example image -->
+                <img src="images/j.png" alt="Image 5 (12x16)">
+            </div>
+            <div class="gallery-item" data-type="portrait"> <!-- Corresponds to 8x10 (bottom-right) in example image -->
+                <img src="images/c.png" alt="Image 6 (8x10)">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 全螢幕畫廊彈窗 -->
+<div id="gallery-modal" class="gallery-modal">
+  <span class="gallery-close">&times;</span>
+  <img id="gallery-modal-img" src="" alt="作品展示">
+  <button class="gallery-prev">❮</button>
+  <button class="gallery-next">❯</button>
+</div>
+ 
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+
+    <!-- 銀河點擊效果容器 -->
+    <div id="galaxy-cursor"></div>
+
+    <script>
+        const colors = [
+          'rgba(180,120,255,0.7)', // 淡紫
+          'rgba(255,220,140,0.7)', // 淡黃
+          'rgba(120,220,255,0.7)', // 淡藍
+          'rgba(255,120,180,0.7)', // 粉紅
+          'rgba(120,255,200,0.7)', // 青綠
+          'rgba(255,160,120,0.7)', // 橙
+          'rgba(200,120,255,0.6)', // 紫
+          'rgba(255,255,255,0.8)'  // 白
+        ];
+        
+        const galaxy = document.getElementById('galaxy-cursor');
+        let isMouseDown = false;
+        let lastX = 0, lastY = 0;
+        
+        document.addEventListener('mousedown', e => {
+          isMouseDown = true;
+          lastX = e.clientX;
+          lastY = e.clientY;
+          spawnDots(e.clientX, e.clientY, false);
+        });
+        
+        document.addEventListener('mouseup', e => {
+          isMouseDown = false;
+        });
+        
+        document.addEventListener('mousemove', e => {
+          if (isMouseDown) {
+            // 拖曳尾巴
+            createTail(lastX, lastY, e.clientX, e.clientY);
+            lastX = e.clientX;
+            lastY = e.clientY;
+            // 拖曳時偶爾出現點
+            if (Math.random() < 0.25) spawnDots(e.clientX, e.clientY, true);
+          }
+        });
+        
+        document.addEventListener('click', e => {
+          spawnDots(e.clientX, e.clientY);
+        });
+        
+        function spawnDots(x, y, isDragging) {
+          const num = isDragging ? 2 + Math.floor(Math.random() * 2) : 3 + Math.floor(Math.random() * 3); // 拖曳2~3，點擊3~5
+          for(let i=0; i<num; i++) {
+            const dot = document.createElement('div');
+            const color = colors[Math.floor(Math.random()*colors.length)];
+            const size = 6 + Math.random()*2; // 4~6px
+            const angle = Math.random() * Math.PI * 2;
+            const radius = isDragging ? 4 + Math.random() * 8 : 6 + Math.random() * 15; // 拖曳粒子更靠近中心
+            dot.className = 'galaxy-dot';
+            dot.style.background = color;
+            dot.style.width = dot.style.height = size + 'px';
+            dot.style.left = (x + Math.cos(angle)*radius - size/2) + 'px';
+            dot.style.top = (y + Math.sin(angle)*radius - size/2) + 'px';
+            dot.style.boxShadow = `0 0 ${Math.floor(4+Math.random()*6)}px ${color}`;
+            galaxy.appendChild(dot);
+            setTimeout(()=>dot.remove(), 200);
+           }
+        }
+
+        
+        // 拖曳時的尾巴
+        function createTail(x1, y1, x2, y2) {
+          const tail = document.createElement('div');
+          tail.className = 'galaxy-tail';
+          const dx = x2-x1, dy = y2-y1;
+          const length = Math.sqrt(dx*dx + dy*dy);
+          tail.style.width = length + 6 + 'px'; // 尾巴稍短
+          tail.style.height = '8px'; // 尾巴較細
+          tail.style.left = Math.min(x1, x2) + 'px';
+          tail.style.top = Math.min(y1, y2) - 6 + 'px';
+          tail.style.transform = `rotate(${Math.atan2(dy, dx)}rad)`;
+          galaxy.appendChild(tail);
+          setTimeout(()=>tail.remove(), 400); // 尾巴淡出時間
+        }
+    </script>
+    <script>
+      // 星塵特效
+(function() {
+  const canvas = document.getElementById('starfield');
+  const ctx = canvas.getContext('2d');
+  let w = window.innerWidth, h = window.innerHeight;
+  let stars = [];
+  const STAR_NUM = 120; // 星塵數量
+  const STAR_COLOR = ['#fff', '#abc7ee', '#ffe9c9', '#e6e6fa'];
+
+  function resize() {
+    w = window.innerWidth;
+    h = window.innerHeight;
+    canvas.width = w;
+    canvas.height = h;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function randomStar() {
+    const r = Math.random();
+    return {
+      x: Math.random() * w,
+      y: Math.random() * h,
+      radius: 0.5 + Math.random() * 1.3,
+      speed: 0.1 + Math.random() * 0.25,
+      alpha: 0.5 + Math.random() * 0.5,
+      color: STAR_COLOR[Math.floor(Math.random()*STAR_COLOR.length)],
+      drift: (Math.random()-0.5) * 0.25
+    };
+  }
+
+  function createStars() {
+    stars = [];
+    for(let i=0; i<STAR_NUM; i++) {
+      stars.push(randomStar());
+    }
+  }
+  createStars();
+
+  function animate() {
+    ctx.clearRect(0,0,w,h);
+    for(let star of stars) {
+      ctx.save();
+      ctx.globalAlpha = star.alpha;
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.radius, 0, Math.PI*2);
+      ctx.fillStyle = star.color;
+      ctx.shadowColor = star.color;
+      ctx.shadowBlur = 8;
+      ctx.fill();
+      ctx.restore();
+
+      // 緩慢向下飄動，有些左右微微漂移
+      star.y += star.speed;
+      star.x += star.drift;
+
+      // 如果超出畫面，重設到頂部
+      if (star.y > h + 2) {
+        star.y = -2;
+        star.x = Math.random() * w;
+      }
+      if (star.x < -5 || star.x > w + 5) {
+        star.x = Math.random() * w;
+        star.y = Math.random() * h;
+      }
+    }
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+</script>
+
+    <script>
+// ==== BGM 跨頁持續播放、音量控制、從 0:11 開始 ====
+window.addEventListener('DOMContentLoaded', () => {
+    const bgmAudio = document.getElementById('bgm-audio');
+    const bgmPlayBtn = document.getElementById('bgm-play-btn');
+    const bgmPlayIcon = document.getElementById('bgm-play-icon');
+    const bgmVolume = document.getElementById('bgm-volume');
+    const bgmProgress = document.getElementById('bgm-progress');
+    const bgmTitle = document.querySelector('.bgm-title');
+    const BGM_START_TIME = 11;
+
+    if (!bgmAudio || !bgmPlayBtn || !bgmPlayIcon || !bgmVolume || !bgmProgress || !bgmTitle) {
+        console.warn("BGM elements not found, BGM functionality will be disabled.");
+        return;
+    }
+
+    bgmTitle.textContent = "Shiny Star";
+
+    function getBgmState() {
+        try {
+            const storedState = localStorage.getItem('bgmState');
+            return storedState ? JSON.parse(storedState) : {};
+        } catch (e) {
+            console.error("Error parsing BGM state from localStorage:", e);
+            return {};
+        }
+    }
+
+    function setBgmState(state) {
+        try {
+            localStorage.setItem('bgmState', JSON.stringify(state));
+        } catch (e) {
+            console.error("Error setting BGM state to localStorage:", e);
+        }
+    }
+
+    function updatePlayButtonIcon() {
+        if (bgmAudio.paused) {
+            bgmPlayIcon.className = 'bi bi-play-fill';
+        } else {
+            bgmPlayIcon.className = 'bi bi-pause-fill';
+        }
+    }
+
+    function initBgm() {
+        const state = getBgmState();
+        let volume = typeof state.volume === 'number' ? state.volume : 0.6;
+        bgmAudio.volume = volume;
+        bgmVolume.value = Math.round(volume * 100);
+
+        // 播放時間初始化，優先使用 localStorage 的 currentTime，但不得小於 BGM_START_TIME
+        let startTime = (typeof state.currentTime === 'number' && state.currentTime >= BGM_START_TIME) ? state.currentTime : BGM_START_TIME;
+        // 先設定 currentTime，即使音訊還沒完全載入，這樣 loadedmetadata 時可以參考
+        bgmAudio.currentTime = startTime;
+
+        if (state.isPlaying) {
+            // 嘗試立即播放，如果失敗（例如自動播放在某些瀏覽器被阻止），
+            // 則等待用戶互動或依賴 `loadedmetadata`
+            bgmAudio.play().then(() => {
+                updatePlayButtonIcon();
+            }).catch(() => {
+                // 自動播放失敗，等待 loadedmetadata 或用戶點擊
+                bgmPlayIcon.className = 'bi bi-play-fill'; // 初始設為播放圖示，因為還沒播
+            });
+            // 確保 loadedmetadata 觸發時能正確設定時間並更新狀態
+            bgmAudio.addEventListener('loadedmetadata', () => {
+                // 重新確認 startTime，因為 play() 可能已經改變了它
+                // 或者如果之前 play() 失敗，這裡確保時間正確
+                bgmAudio.currentTime = (typeof getBgmState().currentTime === 'number' && getBgmState().currentTime >= BGM_START_TIME) ? getBgmState().currentTime : BGM_START_TIME;
+                if (getBgmState().isPlaying) { // 再次檢查 state，因為用戶可能在 loadedmetadata 前操作了
+                    bgmAudio.play().catch(() => {}); // 再次嘗試播放
+                }
+                updatePlayButtonIcon();
+            }, { once: true });
+        } else {
+            updatePlayButtonIcon(); // 設為播放圖示
+        }
+    }
+    initBgm();
+
+    bgmPlayBtn.addEventListener('click', () => {
+        if (bgmAudio.paused) {
+            if (bgmAudio.currentTime < BGM_START_TIME) {
+                bgmAudio.currentTime = BGM_START_TIME;
+            }
+            bgmAudio.play().catch(error => console.error("Error playing BGM:", error));
+            // play() 是異步的，圖示更新應在 play 事件後或立即假設成功
+            // updatePlayButtonIcon(); // 移到 play 事件監聽器
+        } else {
+            bgmAudio.pause();
+            // updatePlayButtonIcon(); // 移到 pause 事件監聽器
+        }
+        // 狀態儲存應在實際播放/暫停後，由 'play' 和 'pause' 事件處理更準確
+    });
+
+    bgmVolume.addEventListener('input', () => {
+        const v = parseFloat(bgmVolume.value) / 100;
+        bgmAudio.volume = v;
+        setBgmState({ ...getBgmState(), volume: v }); // 只更新 volume
+    });
+
+    bgmProgress.addEventListener('input', () => {
+        if (bgmAudio.duration && isFinite(bgmAudio.duration)) { // 檢查 duration 是否有效
+            const seekTime = (parseFloat(bgmProgress.value) / 100) * bgmAudio.duration;
+            bgmAudio.currentTime = Math.max(seekTime, BGM_START_TIME); // 確保不小於 BGM_START_TIME
+            // currentTime 變更會觸發 timeupdate，狀態在那裡更新
+        }
+    });
+
+    bgmAudio.addEventListener('timeupdate', () => {
+        if (bgmAudio.duration && isFinite(bgmAudio.duration)) {
+            if (bgmAudio.currentTime < BGM_START_TIME && !bgmAudio.seeking) { // 增加 !bgmAudio.seeking 避免在拖動時強制跳轉
+                bgmAudio.currentTime = BGM_START_TIME;
+                return; // currentTime 改變會再次觸發 timeupdate
+            }
+            const progressPercent = (bgmAudio.currentTime / bgmAudio.duration) * 100;
+            bgmProgress.value = progressPercent;
+            // 減少 localStorage 的寫入頻率，只在關鍵時刻（如 beforeunload, play, pause）寫入 isPlaying 和 currentTime
+        }
+    });
+
+    bgmAudio.addEventListener('ended', () => {
+        bgmAudio.currentTime = BGM_START_TIME;
+        bgmAudio.play().catch(error => console.error("Error restarting BGM on ended:", error));
+    });
+
+    // ==== 新增的事件監聽器，處理外部中斷 ====
+    bgmAudio.addEventListener('pause', () => {
+        updatePlayButtonIcon();
+        setBgmState({ ...getBgmState(), isPlaying: false, currentTime: bgmAudio.currentTime });
+    });
+
+    bgmAudio.addEventListener('play', () => {
+        updatePlayButtonIcon();
+        setBgmState({ ...getBgmState(), isPlaying: true, currentTime: bgmAudio.currentTime });
+    });
+
+    // 可選：監聽其他可能導致播放停止的事件
+    bgmAudio.addEventListener('stalled', () => {
+        console.warn("BGM playback stalled.");
+        updatePlayButtonIcon(); // 如果 stalled 導致暫停，圖示會更新
+    });
+    bgmAudio.addEventListener('suspend', () => {
+        console.warn("BGM loading suspended.");
+        // 通常 suspend 不直接意味著 paused，但可以觀察
+    });
+    // ---------------------------------------
+
+    window.addEventListener('beforeunload', () => {
+        // 確保在離開頁面前儲存的是最新的播放狀態和時間
+        setBgmState({
+            volume: bgmAudio.volume,
+            currentTime: bgmAudio.currentTime,
+            isPlaying: !bgmAudio.paused // 以 audio 元素的實際狀態為準
+        });
+    });
+
+    // 確保音訊元數據載入後，進度條的最大值是正確的
+    bgmAudio.addEventListener('loadedmetadata', () => {
+        if (bgmAudio.duration && isFinite(bgmAudio.duration)) {
+            // bgmProgress.max 應該在 HTML 中設定為 100
+            // 如果 currentTime 在 BGM_START_TIME 之前，並且沒有在播放，則更新進度條
+            if (bgmAudio.currentTime < BGM_START_TIME && bgmAudio.paused) {
+                 const progressPercent = (BGM_START_TIME / bgmAudio.duration) * 100;
+                 bgmProgress.value = progressPercent;
+            } else if (bgmAudio.duration) {
+                const progressPercent = (bgmAudio.currentTime / bgmAudio.duration) * 100;
+                bgmProgress.value = progressPercent;
+            }
+        }
+    });
+});
+    </script>
+
+    <script>
+      // 圖片點擊彈出畫廊
+const items = document.querySelectorAll('.gallery-item');
+const modal = document.getElementById('gallery-modal');
+const modalImg = document.getElementById('gallery-modal-img');
+const closeBtn = document.querySelector('.gallery-close');
+const prevBtn = document.querySelector('.gallery-prev');
+const nextBtn = document.querySelector('.gallery-next');
+let currentIndex = 0;
+
+items.forEach((item, index) => {
+  item.addEventListener('click', () => {
+    currentIndex = index;
+    modalImg.src = item.querySelector('img').src;
+    modal.style.display = 'flex';
+  });
+});
+
+closeBtn.addEventListener('click', () => {
+  modal.style.display = 'none';
+});
+
+prevBtn.addEventListener('click', () => {
+  currentIndex = (currentIndex - 1 + items.length) % items.length;
+  modalImg.src = items[currentIndex].querySelector('img').src;
+});
+
+nextBtn.addEventListener('click', () => {
+  currentIndex = (currentIndex + 1) % items.length;
+  modalImg.src = items[currentIndex].querySelector('img').src;
+});
+
+// 點擊畫廊外側關閉
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) {
+    modal.style.display = 'none';
+  }
+});
+
+    </script>
+</body>
+
+</html>

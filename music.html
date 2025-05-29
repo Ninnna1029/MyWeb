@@ -1,0 +1,787 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/rwd.css">
+    <title>✦ 𝐒𝐞𝐫𝐞𝐧𝐝𝐢𝐩𝐢𝐭𝐲 ✦</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+  <canvas id="starfield"></canvas>
+    <div class="top">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+          <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+              <img src="images/logo.png" alt="Logo" style="height:32px;width:auto;margin-right:10px;">
+              𝐒𝐞𝐫𝐞𝐧𝐝𝐢𝐩𝐢𝐭𝐲
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="me.html">About Me</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="music.html">Music</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Artist
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="group.html">Group</a></li>
+                    <li><a class="dropdown-item" href="solo.html">Solo</a></li>
+                  </ul>
+                </li>
+              </ul>
+              <div class="bgm-player d-flex align-items-center ms-lg-3">
+                <button class="btn btn-outline-light btn-sm" id="bgm-play-btn" type="button" aria-label="Play background music" style="margin-right: 12px;">
+                  <span id="bgm-play-icon" class="bi bi-play-fill"></span>
+                </button>
+              
+                <div class="bgm-controls d-flex flex-column" style="width: 200px; margin-right: 12px;">
+                  <div class="d-flex align-items-center mb-2">
+                    <label for="bgm-progress" class="me-2 text-white" style="min-width: 50px; font-size: 0.85rem;">Progress</label>
+                    <input type="range" id="bgm-progress" min="0" max="100" value="0" step="0.1" style="flex-grow: 1; accent-color: #abc7ee;">
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <label for="bgm-volume" class="me-2 text-white" style="min-width: 50px; font-size: 0.85rem;">Volume</label>
+                    <input type="range" id="bgm-volume" min="0" max="100" value="60" step="1" style="flex-grow: 1; accent-color: #abc7ee;">
+                  </div>
+                </div>
+              
+                <div class="bgm-title text-white" style="min-width: 150px; font-size: 0.95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                  Shiny Star
+                </div>
+              
+                <audio id="bgm-audio" src="audio/bgm.mp3" preload="auto" style="display:none;"></audio>
+              </div>
+            </div>
+          </div>
+        </nav>
+    </div>      
+
+    <div class="container my-4">
+      <!-- 第一首歌 -->
+      <div class="music-player-block mb-5" data-song="1">
+        <div class="card music-player border-0 shadow-none">
+          <div class="row g-0 align-items-center flex-lg-row flex-column">
+            <div class="col-lg-5 d-flex justify-content-center align-items-center mb-3 mb-lg-0">
+              <img src="images/hope.jpg" class="album-img" alt="Album Cover" />
+            </div>
+            <div class="col-lg-7 d-flex flex-column justify-content-between">
+              <div class="lyric-section px-3 py-2">
+                <br>
+                <h5 class="song-title mb-3 text-center text-lg-start">Hopefully Sky</h5>
+                <div class="lyric-box" data-lyric-box="1"></div>
+              </div>
+              <div class="player-controls d-flex align-items-center justify-content-center py-3 flex-row">
+                <button class="btn btn-outline-light btn-sm me-2" data-play-btn="1">
+                  <span data-play-icon="1" class="bi bi-play-fill"></span>
+                </button>
+                <span data-current-time="1">0:00</span>
+                <input type="range" data-progress="1" value="0" min="0" max="100" class="mx-2" style="width:120px;">
+                <span data-duration="1">0:00</span>
+                <audio data-audio="1" src="audio/hopefullysky.mp3"></audio>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <!-- 第二首歌 -->
+      <div class="music-player-block mb-5" data-song="2">
+        <div class="card music-player border-0 shadow-none">
+          <div class="row g-0 align-items-center flex-lg-row flex-column">
+            <div class="col-lg-5 d-flex justify-content-center align-items-center mb-3 mb-lg-0">
+              <img src="images/lovepoem.jpg" class="album-img" alt="Album Cover" />
+            </div>
+            <div class="col-lg-7 d-flex flex-column justify-content-between">
+              <div class="lyric-section px-3 py-2">
+                <br>
+                <h5 class="song-title mb-3 text-center text-lg-start">Blueming</h5>
+                <div class="lyric-box" data-lyric-box="2"></div>
+              </div>
+              <div class="player-controls d-flex align-items-center justify-content-center py-3 flex-row">
+                <button class="btn btn-outline-light btn-sm me-2" data-play-btn="2">
+                  <span data-play-icon="2" class="bi bi-play-fill"></span>
+                </button>
+                <span data-current-time="2">0:00</span>
+                <input type="range" data-progress="2" value="0" min="0" max="100" class="mx-2" style="width:120px;">
+                <span data-duration="2">0:00</span>
+                <audio data-audio="2" src="audio/blueming.mp3"></audio>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 第三首歌 -->
+      <div class="music-player-block mb-5" data-song="3">
+        <div class="card music-player border-0 shadow-none">
+          <div class="row g-0 align-items-center flex-lg-row flex-column">
+            <div class="col-lg-5 d-flex justify-content-center align-items-center mb-3 mb-lg-0">
+              <img src="images/iloveu.jpg" class="album-img" alt="Album Cover" />
+            </div>
+            <div class="col-lg-7 d-flex flex-column justify-content-between">
+              <div class="lyric-section px-3 py-2">
+                <br>
+                <h5 class="song-title mb-3 text-center text-lg-start">오늘만 I LOVE YOU</h5>
+                <div class="lyric-box" data-lyric-box="3"></div>
+              </div>
+              <div class="player-controls d-flex align-items-center justify-content-center py-3 flex-row">
+                <button class="btn btn-outline-light btn-sm me-2" data-play-btn="3">
+                  <span data-play-icon="3" class="bi bi-play-fill"></span>
+                </button>
+                <span data-current-time="3">0:00</span>
+                <input type="range" data-progress="3" value="0" min="0" max="100" class="mx-2" style="width:120px;">
+                <span data-duration="3">0:00</span>
+                <audio data-audio="3" src="audio/ifisayiloveu.mp3"></audio>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="text-center">
+            <h3>𝒕𝒐 𝒃𝒆 𝒄𝒐𝒏𝒕𝒊𝒏𝒖𝒆𝒅...</h3>
+          </div>          
+        </div>
+      </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.js"></script>
+    
+<script>
+// 歌詞陣列：每首歌一組
+const allLyrics = {
+  1: [
+  { time: 0, text: "", translation: "" },
+  { time: 11, text: "꽃 잎이 내 맘을 흔들고", translation: "花瓣搖動著我的心" },
+  { time: 17, text: "꽃 잎이 내 눈을 적시고", translation: "花瓣濕潤了我眼睛" },
+  { time: 22, text: "아름다운 기억", translation: "美麗的記憶" },
+  { time: 24, text: "푸른 하늘만 바라본다", translation: "仰望總是蔚藍的天" },
+  { time: 32, text: "꼬마야 약해지지마", translation: "小鬼啊 不要變軟弱" },
+  { time: 37, text: "슬픔을 혼자 안고 살지는 마", translation: "不要獨自懷抱著難過活著" },
+  { time: 43, text: "아빠야 어디를 가야", translation: "阿爸呀 我該往哪去" },
+  { time: 47, text: "당신의 마음처럼 살 수 있을까 ", translation: "才能與你費同樣心思生活" },
+  { time: 52, text: "가장 큰 별이 보이는 우리 동네 ", translation: "在我們小區看見最大星星" },
+  { time: 57, text: "따뜻한 햇살 꽃이 피는 봄에", translation: "溫暖的陽光灑在花開的春天" },
+  { time: 63, text: "그댈 위로해요 그댈 사랑해요", translation: "這樣安慰著你 這樣愛著你" },
+  { time: 68, text: "그대만의 노래로", translation: "唱著只屬於你的歌" },
+  { time: 73, text: "뚜루뚜뚜두 두두두", translation: "do lu do do do do do do" },
+  { time: 78, text: "뚜루뚜뚜두 두두두", translation: "do lu do do do do do do" },
+  { time: 84, text: "뚜루뚜뚜두 두두두", translation: "do lu do do do do do do" },
+  { time: 88, text: "하늘바라기 하늘만 멍하니", translation: "仰望著天空 傻傻的發呆" },
+  { time: 94, text: "가장 큰 하늘이 있잖아 ", translation: "不是有片最遼闊的天空嗎" },
+  { time: 99, text: "그대가 내 하늘이잖아", translation: "你就是我的那片天不是嗎" },
+  { time: 104, text: "후회 없는 삶들", translation: "無悔的日子" },
+  { time: 107, text: "가난했던 추억", translation: "窮困的回憶" },
+  { time: 109, text: "난 행복했다", translation: "但我很幸福" },
+  { time: 115, text: "아빠야 약해지지마 ", translation: "阿爸呀 你要堅強啊" },
+  { time: 120, text: "빗속을 걸어도 난 감사하니깐", translation: "走在雨中我也仍覺得感謝" },
+  { time: 125, text: "아빠야 어디를 가야", translation: "阿爸呀 我該往哪去" },
+  { time: 130, text: "당신의 마음처럼 살 수 있을까", translation: "才能與你費同樣心思生活" },
+  { time: 135, text: "가장 큰 별이 보이는 우리 동네 ", translation: "在我們小區看見最大星星" },
+  { time: 140, text: "따뜻한 햇살 꽃이 피는 봄에", translation: "溫暖的陽光灑在花開的春天" },
+  { time: 146, text: "그댈 위로해요 그댈 사랑해요", translation: "這樣安慰著你 這樣愛著你" },
+  { time: 151, text: "그대만의 노래로", translation: "唱著只屬於你的歌" },
+  { time: 156, text: "따뜻한 바람이 부는 봄 내음", translation: "溫暖的微風捎來春的氣息" },
+  { time: 158, text: "그대와 이 길을 함께 걷네", translation: "我和你一起走在這條路上" },
+  { time: 161, text: "아련한 내 맘이 겨우 닿는 곳에", translation: "搖擺的心勉強觸碰的地方" },
+  { time: 166, text: "익숙한 골목 뒤에 숨어있다가", translation: "藏在熟悉的小巷子後面" },
+  { time: 171, text: "그대 오기만 오기만", translation: "等著你來 等著你來" },
+  { time: 173, text: "기다린 그때가 자꾸만 떠올라", translation: "總是想起等待你的時光" },
+  { time: 176, text: "가장 큰 별이 보이는 우리 동네", translation: "在我們小區看見最大星星" },
+  { time: 181, text: "따뜻한 햇살 꽃이 피는 봄에", translation: "溫暖的陽光灑在花開的春天" },
+  { time: 187, text: "그댈 위로해요 그댈 사랑해요", translation: "這樣安慰著你 這樣愛著你" },
+  { time: 192, text: "그대만의 노래로", translation: "唱著只屬於你的歌" },
+  { time: 197, text: "뚜루뚜뚜두 두두두", translation: "do lu do do do do do do" },
+  { time: 202, text: "뚜루뚜뚜두 두두두", translation: "do lu do do do do do do" },
+  { time: 207, text: "뚜루뚜뚜두 두두두", translation: "do lu do do do do do do" },
+  { time: 212, text: "하늘바라기 하늘만 멍하니", translation: "仰望著天空 傻傻的發呆" },
+  { time: 217, text: "", translation: "" },
+    // ...更多
+  ],
+
+  2: [
+  { time: 0, text: "", translation: "" },
+  { time: 8, text: "‘뭐해?‘라는 두 글자에", translation: "「在幹嘛？」這三個字裡" },
+  { time: 11, text: "‘네가 보고 싶어’ 나의 속마음을 담아 우", translation: "藏著「我好想你」的心裡話 Woo" },
+  { time: 18, text: "이모티콘 하나하나 속에", translation: "傳出去的各個表情符號" },
+  { time: 20, text: "달라지는 내 미묘한 심리를 알까 우", translation: "你有發現我微妙的心裡變化嗎 Woo" },
+  { time: 26, text: "아니 바쁘지 않아 nothing no no", translation: "不 我一點也不忙 nothing no no" },
+  { time: 31, text: "잠들어 있지 않아 insomnia nia nia", translation: "不 我沒有在睡覺 insomnia nia nia" },
+  { time: 36, text: "지금 다른 사람과 함께이지 않아", translation: "現在沒跟誰在一起" },
+  { time: 40, text: "응, 나도 너를 생각 중", translation: "恩，我在想你" },
+  { time: 45, text: "우리의 네모 칸은 bloom", translation: "我們的四邊框 bloom" },
+  { time: 49, text: "엄지손가락으로 장미꽃을 피워", translation: "用大拇指綻放玫瑰花" },
+  { time: 54, text: "향기에 취할 것 같아 우", translation: "沈醉在花香之中 Woo" },
+  { time: 58, text: "오직 둘만의 비밀의 정원", translation: "只有我們兩人的祕密花園" },
+  { time: 63, text: "I feel bloom I feel bloom I feel bloom", translation: "" },
+  { time: 76, text: "너에게 한 송이를 더 보내", translation: "再多送給你一朵" },
+  { time: 86, text: "밤샘 작업으로 업데이트", translation: "徹夜通宵更新的" },
+  { time: 88, text: "흥미로운 이 작품의 지은이 that’s me 우", translation: "這津津有味的作品創作人（知恩李）that’s me Woo" },
+  { time: 94, text: "어쩜 이 관계의 클라이맥스", translation: "也許這段關係的高峰" },
+  { time: 97, text: "2막으로 넘어가기엔 지금이 good timing 우", translation: "就是正翻到第2幕的現在（知金李）good timing Woo" },
+  { time: 104, text: "같은 맘인 걸 알아 realize la lize", translation: "我知道我們心意相通 realize la lize" },
+  { time: 108, text: "말을 고르지 말아 just reply la la ly", translation: "別再刪刪減減 just reply la la ly" },
+  { time: 113, text: "조금 장난스러운 나의 은유에", translation: "我調皮的隱喻" },
+  { time: 117, text: "네 해석이 궁금해", translation: "真好奇你會怎麽解讀" },
+  { time: 122, text: "우리의 색은 gray and blue", translation: "我們的顏色是 gray and blue" },
+  { time: 126, text: "엄지손가락으로 말풍선을 띄워", translation: "用大拇指升起對話框" },
+  { time: 131, text: "금세 터질 것 같아 우", translation: "就像快爆開了一樣 Woo" },
+  { time: 135, text: "호흡이 가빠져 어지러워", translation: "呼吸變得急促 好暈呀" },
+  { time: 140, text: "I feel blue. I feel blue. I feel blue.", translation: "" },
+  { time: 153, text: "너에게 가득히 채워", translation: "想將這份滿滿心意給你" },
+  { time: 158, text: "띄어쓰기없이보낼게사랑인것같애", translation: "不分段直接傳就是我滿溢的愛" },
+  { time: 162, text: "백만송이장미꽃을, 나랑피워볼래?", translation: "百萬朵玫瑰，要和我一起綻放嗎？" },
+  { time: 167, text: "꽃잎의 색은 우리 마음 가는 대로 칠해", translation: "花瓣顏色就照我們的心意去塗滿" },
+  { time: 172, text: "시들 때도 예쁘게", translation: "凋謝時也同樣美麗" },
+  { time: 176, text: "우리의 네모 칸은 bloom", translation: "我們的四邊框 bloom" },
+  { time: 180, text: "엄지손가락으로 장미꽃을 피워", translation: "用大拇指綻放玫瑰花" },
+  { time: 185, text: "향기에 취할 것 같아 우", translation: "沈醉在花香之中 Woo" },
+  { time: 189, text: "오직 둘만의 비밀의 정원", translation: "只有我們兩人的祕密花園" },
+  { time: 194, text: "I feel bloom I feel bloom I feel bloom", translation: "" },
+  { time: 208, text: "너에게 한 송이를 더 보내", translation: "再多送給你一朵" },
+  { time: 214, text: "", translation: "" },
+    // ...更多
+  ],
+
+3: [
+  { time: 0, text: "그날 이후로 난 이렇게 살고", translation: "自從那天起 我就這樣混混噩噩地活著" },
+  { time: 3, text: "더는 기타 한 번도 들지 못 하고", translation: "再也無法拿起吉他" },
+  { time: 7, text: "그날 이후로 난 이렇게 살아", translation: "自從那天起 我就這樣活著" },
+  { time: 11, text: "웃기지 그런데", translation: "很可笑吧？但是⋯" },
+  { time: 14, text: "세탁기는 가득히 밀려버린 빨래를 토해내고", translation: "洗衣機吐出塞地滿滿的衣物" },
+  { time: 19, text: "머리는 붕 떠 부스스해", translation: "頭髮毛躁亂糟糟的" },
+  { time: 21, text: "나 빼고 분주한 창밖은 벚꽃마저 바쁘고", translation: "除了我 就連窗外飛舞的櫻花看起來都如此忙碌" },
+  { time: 28, text: "한심하기로 퍽 짝이 없어도", translation: "即使我愚蠢的無藥可救、" },
+  { time: 31, text: "당장에 내가 내일 환생할 리 만무해도", translation: "無法於隔天重生" },
+  { time: 35, text: "추억 팔아서 곡이나 쓰는 건 딱 죽기보다 싫은데", translation: "但我對將回憶寫成歌曲這件事還是深惡痛絕" },
+  { time: 42, text: "그날 이후로 난 이렇게 살고", translation: "自從那天起 我就這樣混混噩噩地活著" },
+  { time: 45, text: "더는 기타 한 번도 들지 못 하고", translation: "再也無法拿起吉他" },
+  { time: 49, text: "그날 이후로 난 이렇게 살아", translation: "自從那天起 我就這樣活著" },
+  { time: 53, text: "웃기지 그런데", translation: "很可笑吧？但是⋯" },
+  { time: 56, text: "오늘만 I love you", translation: "只有在今天 I love you" },
+  { time: 59, text: "愛してる 사랑해라 말하고", translation: "我會對你說 我愛你" },
+  { time: 63, text: "말하고 후회하면 좀 괜찮을까?", translation: "說出口後再感到後悔會比較好一些嗎？" },
+  { time: 70, text: "Love you", translation: "" },
+  { time: 72, text: "Dum, dum, dum, yeah", translation: "" },
+  { time: 79, text: "Dum, dum, dum, yeah", translation: "" },
+  { time: 83, text: "Wanna tell ya", translation: "" },
+  { time: 84, text: "영감을 받은 척하고", translation: "假裝得到靈感" },
+  { time: 86, text: "뻔한 가사를 써봐도", translation: "試著寫出老套的歌詞" },
+  { time: 87, text: "돌고 돌아 종착지는 결국 you", translation: "繞來繞去 最終終點還是 you" },
+  { time: 90, text: "So sick of being sober", translation: "" },
+  { time: 91, text: "너에 대한 노래 아닌 척", translation: "假裝這首歌曲與你無關" },
+  { time: 93, text: "살아가겠지 오늘 내일 또 모레 지겹지만", translation: "我會活下去 即使今天、明天甚至後天都令人感到厭煩" },
+  { time: 98, text: "추억 팔아서 곡이나 쓰는 건 딱 죽기보다 싫은데", translation: "但我對將回憶寫成歌曲這件事還是深感厭惡" },
+  { time: 104, text: "그날 이후로 난 이렇게 살고", translation: "自從那天起 我就這樣混混噩噩地活著" },
+  { time: 108, text: "더는 기타 한 번도 들지 못 하고", translation: "再也無法拿起吉他" },
+  { time: 111, text: "그날 이후로 난 이렇게 살아", translation: "自從那天起 我就這樣活著" },
+  { time: 115, text: "웃기지 그런데", translation: "很可笑吧？但是⋯" },
+  { time: 118, text: "오늘만 I love you", translation: "只有在今天 I love you" },
+  { time: 121, text: "愛してる 사랑해라 말하고", translation: "我會對你說 我愛你" },
+  { time: 126, text: "말하고 후회하면 좀 괜찮을까?", translation: "說出口後再感到後悔會比較好一些嗎？" },
+  { time: 132, text: "Love you", translation: "" },
+  { time: 133, text: "솔직히 말해 음악 같은 건 감정 소모밖엔 안 되니까", translation: "說實話音樂這種東西終究只是在消耗情感" },
+  { time: 136, text: "가사 쓰고 기타 치는 건 의미도 없고", translation: "作詞彈吉他什麼的根本毫無意義" },
+  { time: 139, text: "억지스러운 감동 코드로 변질될 것 같아서 이만 할래", translation: "只是牽強地做成感動和弦而已 所以到此為止吧" },
+  { time: 145, text: "다 별거 없는 거잖아", translation: "反正都是些無關緊要的事罷了" },
+  { time: 147, text: "(I love you)", translation: "" },
+  { time: 149, text: "Dum, dum, dum, yeah", translation: "" },
+  { time: 151, text: "(愛してる, 사랑해)", translation: "" },
+  { time: 156, text: "Dum, dum, dum, yeah (Oh, oh)", translation: "" },
+  { time: 159, text: "", translation: "" },
+    // ...更多
+  ]
+};
+
+// 初始化所有播放器
+document.querySelectorAll('.music-player-block').forEach(block => {
+  const songId = block.getAttribute('data-song');
+  const lyrics = allLyrics[songId];
+
+  // DOM
+  const lyricBox = block.querySelector(`[data-lyric-box="${songId}"]`);
+  const audio = block.querySelector(`[data-audio="${songId}"]`);
+  const playBtn = block.querySelector(`[data-play-btn="${songId}"]`);
+  const playIcon = block.querySelector(`[data-play-icon="${songId}"]`);
+  const progress = block.querySelector(`[data-progress="${songId}"]`);
+  const currentTimeEl = block.querySelector(`[data-current-time="${songId}"]`);
+  const durationEl = block.querySelector(`[data-duration="${songId}"]`);
+
+  // 插入歌詞
+  lyrics.forEach((line, idx) => {
+    const container = document.createElement('div');
+    container.className = 'lyric-line-container';
+    container.setAttribute('data-idx', idx);
+
+    const original = document.createElement('p');
+    original.className = 'lyric-line original';
+    original.textContent = line.text;
+
+    const translation = document.createElement('p');
+    translation.className = 'lyric-line translation';
+    translation.textContent = line.translation;
+
+    container.appendChild(original);
+    container.appendChild(translation);
+    lyricBox.appendChild(container);
+  });
+
+  // 進入頁面時，預設 duration（避免未載入時顯示 0:00 或空白）
+  durationEl.textContent = '--:--';
+
+  // 控制
+  playBtn.onclick = function() {
+    if (audio.paused) {
+      // 停止其他播放器
+      document.querySelectorAll('audio').forEach(a => { if (a !== audio) a.pause(); });
+      audio.play();
+    } else {
+      audio.pause();
+    }
+  };
+
+  audio.onplay = () => playIcon.className = 'bi bi-pause-fill';
+  audio.onpause = () => playIcon.className = 'bi bi-play-fill';
+
+  // 進度條與歌詞
+  audio.ontimeupdate = function() {
+    if (audio.duration && !isNaN(audio.duration)) {
+      progress.value = (audio.currentTime / audio.duration) * 100 || 0;
+      currentTimeEl.textContent = formatTime(audio.currentTime);
+      // 若duration尚未顯示，補上
+      if (durationEl.textContent === '--:--' || durationEl.textContent === '0:00' || durationEl.textContent === 'NaN:NaN') {
+        durationEl.textContent = formatTime(audio.duration);
+      }
+    }
+    updateLyric(audio.currentTime, lyricBox, lyrics);
+  };
+
+  // 只要 metadata 載入就更新 duration
+  audio.onloadedmetadata = function() {
+    if (audio.duration && !isNaN(audio.duration)) {
+      durationEl.textContent = formatTime(audio.duration);
+    } else {
+      durationEl.textContent = '--:--';
+    }
+  };
+
+  // 若音檔已快取，onloadedmetadata 可能不觸發，手動觸發一次
+  if (audio.readyState >= 1) {
+    if (audio.duration && !isNaN(audio.duration)) {
+      durationEl.textContent = formatTime(audio.duration);
+    }
+  } else {
+    // 若還沒 ready，監聽 canplay 事件
+    audio.addEventListener('canplay', function once() {
+      if (audio.duration && !isNaN(audio.duration)) {
+        durationEl.textContent = formatTime(audio.duration);
+      }
+      audio.removeEventListener('canplay', once);
+    });
+  }
+
+  progress.oninput = function() {
+    if (audio.duration && !isNaN(audio.duration)) {
+      audio.currentTime = (progress.value / 100) * audio.duration;
+    }
+  };
+
+  audio.onended = function() {
+    progress.value = 0;
+    currentTimeEl.textContent = "0:00";
+    playIcon.className = 'bi bi-play-fill';
+    updateLyric(0, lyricBox, lyrics);
+  };
+});
+
+// 歌詞高亮滾動
+function updateLyric(currentTime, lyricBox, lyrics) {
+  let activeIdx = 0;
+  for (let i = 0; i < lyrics.length; i++) {
+    if (currentTime >= lyrics[i].time) activeIdx = i;
+    else break;
+  }
+  lyricBox.querySelectorAll('.lyric-line-container').forEach((el, i) => {
+    el.classList.toggle('active', i === activeIdx);
+    if (i === activeIdx) {
+      lyricBox.scrollTop = el.offsetTop - lyricBox.offsetTop - lyricBox.clientHeight / 2 + el.clientHeight / 2;
+    }
+  });
+}
+
+function formatTime(sec) {
+  if (!isFinite(sec) || sec < 0) return '0:00';
+  sec = Math.floor(sec);
+  const m = Math.floor(sec / 60);
+  const s = sec % 60;
+  return `${m}:${s.toString().padStart(2, '0')}`;
+}
+
+</script>
+
+
+    <!-- Bootstrap Icons CDN（for play/pause icons） -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+
+    <!-- 銀河點擊效果容器 -->
+    <div id="galaxy-cursor"></div>
+
+    <script>
+        const colors = [
+          'rgba(180,120,255,0.7)', // 淡紫
+          'rgba(255,220,140,0.7)', // 淡黃
+          'rgba(120,220,255,0.7)', // 淡藍
+          'rgba(255,120,180,0.7)', // 粉紅
+          'rgba(120,255,200,0.7)', // 青綠
+          'rgba(255,160,120,0.7)', // 橙
+          'rgba(200,120,255,0.6)', // 紫
+          'rgba(255,255,255,0.8)'  // 白
+        ];
+        
+        const galaxy = document.getElementById('galaxy-cursor');
+        let isMouseDown = false;
+        let lastX = 0, lastY = 0;
+        
+        document.addEventListener('mousedown', e => {
+          isMouseDown = true;
+          lastX = e.clientX;
+          lastY = e.clientY;
+          spawnDots(e.clientX, e.clientY, false);
+        });
+        
+        document.addEventListener('mouseup', e => {
+          isMouseDown = false;
+        });
+        
+        document.addEventListener('mousemove', e => {
+          if (isMouseDown) {
+            // 拖曳尾巴
+            createTail(lastX, lastY, e.clientX, e.clientY);
+            lastX = e.clientX;
+            lastY = e.clientY;
+            // 拖曳時偶爾出現點
+            if (Math.random() < 0.25) spawnDots(e.clientX, e.clientY, true);
+          }
+        });
+        
+        document.addEventListener('click', e => {
+          spawnDots(e.clientX, e.clientY);
+        });
+        
+        function spawnDots(x, y, isDragging) {
+          const num = isDragging ? 2 + Math.floor(Math.random() * 2) : 3 + Math.floor(Math.random() * 3); // 拖曳2~3，點擊3~5
+          for(let i=0; i<num; i++) {
+            const dot = document.createElement('div');
+            const color = colors[Math.floor(Math.random()*colors.length)];
+            const size = 6 + Math.random()*2; // 4~6px
+            const angle = Math.random() * Math.PI * 2;
+            const radius = isDragging ? 4 + Math.random() * 8 : 6 + Math.random() * 15; // 拖曳粒子更靠近中心
+            dot.className = 'galaxy-dot';
+            dot.style.background = color;
+            dot.style.width = dot.style.height = size + 'px';
+            dot.style.left = (x + Math.cos(angle)*radius - size/2) + 'px';
+            dot.style.top = (y + Math.sin(angle)*radius - size/2) + 'px';
+            dot.style.boxShadow = `0 0 ${Math.floor(4+Math.random()*6)}px ${color}`;
+            galaxy.appendChild(dot);
+            setTimeout(()=>dot.remove(), 200);
+           }
+        }
+
+        
+        // 拖曳時的尾巴
+        function createTail(x1, y1, x2, y2) {
+          const tail = document.createElement('div');
+          tail.className = 'galaxy-tail';
+          const dx = x2-x1, dy = y2-y1;
+          const length = Math.sqrt(dx*dx + dy*dy);
+          tail.style.width = length + 6 + 'px'; // 尾巴稍短
+          tail.style.height = '8px'; // 尾巴較細
+          tail.style.left = Math.min(x1, x2) + 'px';
+          tail.style.top = Math.min(y1, y2) - 6 + 'px';
+          tail.style.transform = `rotate(${Math.atan2(dy, dx)}rad)`;
+          galaxy.appendChild(tail);
+          setTimeout(()=>tail.remove(), 400); // 尾巴淡出時間
+        }
+    </script>
+
+    <script>// 星塵特效
+      (function() {
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+        let w = window.innerWidth, h = window.innerHeight;
+        let stars = [];
+        const STAR_NUM = 120; // 星塵數量
+        const STAR_COLOR = ['#fff', '#abc7ee', '#ffe9c9', '#e6e6fa'];
+      
+        function resize() {
+          w = window.innerWidth;
+          h = window.innerHeight;
+          canvas.width = w;
+          canvas.height = h;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+      
+        function randomStar() {
+          const r = Math.random();
+          return {
+            x: Math.random() * w,
+            y: Math.random() * h,
+            radius: 0.5 + Math.random() * 1.3,
+            speed: 0.1 + Math.random() * 0.25,
+            alpha: 0.5 + Math.random() * 0.5,
+            color: STAR_COLOR[Math.floor(Math.random()*STAR_COLOR.length)],
+            drift: (Math.random()-0.5) * 0.25
+          };
+        }
+      
+        function createStars() {
+          stars = [];
+          for(let i=0; i<STAR_NUM; i++) {
+            stars.push(randomStar());
+          }
+        }
+        createStars();
+      
+        function animate() {
+          ctx.clearRect(0,0,w,h);
+          for(let star of stars) {
+            ctx.save();
+            ctx.globalAlpha = star.alpha;
+            ctx.beginPath();
+            ctx.arc(star.x, star.y, star.radius, 0, Math.PI*2);
+            ctx.fillStyle = star.color;
+            ctx.shadowColor = star.color;
+            ctx.shadowBlur = 8;
+            ctx.fill();
+            ctx.restore();
+      
+            // 緩慢向下飄動，有些左右微微漂移
+            star.y += star.speed;
+            star.x += star.drift;
+      
+            // 如果超出畫面，重設到頂部
+            if (star.y > h + 2) {
+              star.y = -2;
+              star.x = Math.random() * w;
+            }
+            if (star.x < -5 || star.x > w + 5) {
+              star.x = Math.random() * w;
+              star.y = Math.random() * h;
+            }
+          }
+          requestAnimationFrame(animate);
+        }
+        animate();
+      })();
+      </script>
+<script>
+// ==== BGM 跨頁持續播放、音量控制、從 0:11 開始 ====
+window.addEventListener('DOMContentLoaded', () => {
+    const bgmAudio = document.getElementById('bgm-audio');
+    const bgmPlayBtn = document.getElementById('bgm-play-btn');
+    const bgmPlayIcon = document.getElementById('bgm-play-icon');
+    const bgmVolume = document.getElementById('bgm-volume');
+    const bgmProgress = document.getElementById('bgm-progress');
+    const bgmTitle = document.querySelector('.bgm-title');
+    const BGM_START_TIME = 11;
+
+    if (!bgmAudio || !bgmPlayBtn || !bgmPlayIcon || !bgmVolume || !bgmProgress || !bgmTitle) {
+        console.warn("BGM elements not found, BGM functionality will be disabled.");
+        return;
+    }
+
+    bgmTitle.textContent = "Shiny Star";
+
+    function getBgmState() {
+        try {
+            const storedState = localStorage.getItem('bgmState');
+            return storedState ? JSON.parse(storedState) : {};
+        } catch (e) {
+            console.error("Error parsing BGM state from localStorage:", e);
+            return {};
+        }
+    }
+
+    function setBgmState(state) {
+        try {
+            localStorage.setItem('bgmState', JSON.stringify(state));
+        } catch (e) {
+            console.error("Error setting BGM state to localStorage:", e);
+        }
+    }
+
+    function updatePlayButtonIcon() {
+        if (bgmAudio.paused) {
+            bgmPlayIcon.className = 'bi bi-play-fill';
+        } else {
+            bgmPlayIcon.className = 'bi bi-pause-fill';
+        }
+    }
+
+    function initBgm() {
+        const state = getBgmState();
+        let volume = typeof state.volume === 'number' ? state.volume : 0.6;
+        bgmAudio.volume = volume;
+        bgmVolume.value = Math.round(volume * 100);
+
+        // 播放時間初始化，優先使用 localStorage 的 currentTime，但不得小於 BGM_START_TIME
+        let startTime = (typeof state.currentTime === 'number' && state.currentTime >= BGM_START_TIME) ? state.currentTime : BGM_START_TIME;
+        // 先設定 currentTime，即使音訊還沒完全載入，這樣 loadedmetadata 時可以參考
+        bgmAudio.currentTime = startTime;
+
+        if (state.isPlaying) {
+            // 嘗試立即播放，如果失敗（例如自動播放在某些瀏覽器被阻止），
+            // 則等待用戶互動或依賴 `loadedmetadata`
+            bgmAudio.play().then(() => {
+                updatePlayButtonIcon();
+            }).catch(() => {
+                // 自動播放失敗，等待 loadedmetadata 或用戶點擊
+                bgmPlayIcon.className = 'bi bi-play-fill'; // 初始設為播放圖示，因為還沒播
+            });
+            // 確保 loadedmetadata 觸發時能正確設定時間並更新狀態
+            bgmAudio.addEventListener('loadedmetadata', () => {
+                // 重新確認 startTime，因為 play() 可能已經改變了它
+                // 或者如果之前 play() 失敗，這裡確保時間正確
+                bgmAudio.currentTime = (typeof getBgmState().currentTime === 'number' && getBgmState().currentTime >= BGM_START_TIME) ? getBgmState().currentTime : BGM_START_TIME;
+                if (getBgmState().isPlaying) { // 再次檢查 state，因為用戶可能在 loadedmetadata 前操作了
+                    bgmAudio.play().catch(() => {}); // 再次嘗試播放
+                }
+                updatePlayButtonIcon();
+            }, { once: true });
+        } else {
+            updatePlayButtonIcon(); // 設為播放圖示
+        }
+    }
+    initBgm();
+
+    bgmPlayBtn.addEventListener('click', () => {
+        if (bgmAudio.paused) {
+            if (bgmAudio.currentTime < BGM_START_TIME) {
+                bgmAudio.currentTime = BGM_START_TIME;
+            }
+            bgmAudio.play().catch(error => console.error("Error playing BGM:", error));
+            // play() 是異步的，圖示更新應在 play 事件後或立即假設成功
+            // updatePlayButtonIcon(); // 移到 play 事件監聽器
+        } else {
+            bgmAudio.pause();
+            // updatePlayButtonIcon(); // 移到 pause 事件監聽器
+        }
+        // 狀態儲存應在實際播放/暫停後，由 'play' 和 'pause' 事件處理更準確
+    });
+
+    bgmVolume.addEventListener('input', () => {
+        const v = parseFloat(bgmVolume.value) / 100;
+        bgmAudio.volume = v;
+        setBgmState({ ...getBgmState(), volume: v }); // 只更新 volume
+    });
+
+    bgmProgress.addEventListener('input', () => {
+        if (bgmAudio.duration && isFinite(bgmAudio.duration)) { // 檢查 duration 是否有效
+            const seekTime = (parseFloat(bgmProgress.value) / 100) * bgmAudio.duration;
+            bgmAudio.currentTime = Math.max(seekTime, BGM_START_TIME); // 確保不小於 BGM_START_TIME
+            // currentTime 變更會觸發 timeupdate，狀態在那裡更新
+        }
+    });
+
+    bgmAudio.addEventListener('timeupdate', () => {
+        if (bgmAudio.duration && isFinite(bgmAudio.duration)) {
+            if (bgmAudio.currentTime < BGM_START_TIME && !bgmAudio.seeking) { // 增加 !bgmAudio.seeking 避免在拖動時強制跳轉
+                bgmAudio.currentTime = BGM_START_TIME;
+                return; // currentTime 改變會再次觸發 timeupdate
+            }
+            const progressPercent = (bgmAudio.currentTime / bgmAudio.duration) * 100;
+            bgmProgress.value = progressPercent;
+            // 減少 localStorage 的寫入頻率，只在關鍵時刻（如 beforeunload, play, pause）寫入 isPlaying 和 currentTime
+        }
+    });
+
+    bgmAudio.addEventListener('ended', () => {
+        bgmAudio.currentTime = BGM_START_TIME;
+        bgmAudio.play().catch(error => console.error("Error restarting BGM on ended:", error));
+    });
+
+    // ==== 新增的事件監聽器，處理外部中斷 ====
+    bgmAudio.addEventListener('pause', () => {
+        updatePlayButtonIcon();
+        setBgmState({ ...getBgmState(), isPlaying: false, currentTime: bgmAudio.currentTime });
+    });
+
+    bgmAudio.addEventListener('play', () => {
+        updatePlayButtonIcon();
+        setBgmState({ ...getBgmState(), isPlaying: true, currentTime: bgmAudio.currentTime });
+    });
+
+    // 可選：監聽其他可能導致播放停止的事件
+    bgmAudio.addEventListener('stalled', () => {
+        console.warn("BGM playback stalled.");
+        updatePlayButtonIcon(); // 如果 stalled 導致暫停，圖示會更新
+    });
+    bgmAudio.addEventListener('suspend', () => {
+        console.warn("BGM loading suspended.");
+        // 通常 suspend 不直接意味著 paused，但可以觀察
+    });
+    // ---------------------------------------
+
+    window.addEventListener('beforeunload', () => {
+        // 確保在離開頁面前儲存的是最新的播放狀態和時間
+        setBgmState({
+            volume: bgmAudio.volume,
+            currentTime: bgmAudio.currentTime,
+            isPlaying: !bgmAudio.paused // 以 audio 元素的實際狀態為準
+        });
+    });
+
+    // 確保音訊元數據載入後，進度條的最大值是正確的
+    bgmAudio.addEventListener('loadedmetadata', () => {
+        if (bgmAudio.duration && isFinite(bgmAudio.duration)) {
+            // bgmProgress.max 應該在 HTML 中設定為 100
+            // 如果 currentTime 在 BGM_START_TIME 之前，並且沒有在播放，則更新進度條
+            if (bgmAudio.currentTime < BGM_START_TIME && bgmAudio.paused) {
+                 const progressPercent = (BGM_START_TIME / bgmAudio.duration) * 100;
+                 bgmProgress.value = progressPercent;
+            } else if (bgmAudio.duration) {
+                const progressPercent = (bgmAudio.currentTime / bgmAudio.duration) * 100;
+                bgmProgress.value = progressPercent;
+            }
+        }
+    });
+});
+</script>
+</body>
+
+</html>
